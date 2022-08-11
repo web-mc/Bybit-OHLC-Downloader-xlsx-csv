@@ -1,2 +1,4 @@
-/MATICUSDT.xlsx
+*.xlsx
+*.csv
 /tr_backtest
+result/

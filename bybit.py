@@ -7,13 +7,13 @@ import pandas as pd
 
 def get_bybit_candles(symbol, interval, limit, startTime):
     """
-    symbol - string
-    interval - string	Data refresh interval. Enum : 1 3 5 15 30 60 120 240 360 720 "D" "M" "W"
-    from - integer	From timestamp in seconds
+    symbol - string.
+    interval - string. Data refresh interval: 1 3 5 15 30 60 120 240 360 720 "D" "M" "W"
+    from - integer. From timestamp in seconds
     limit - integer	Limit for data size, max size is 200. Default as showing 200 pieces of data.
-    For avoiding your IP ban this script is using time.sleep(). You can play with this part.
+    For avoiding your IP ban, this script is using time.sleep(). You can play with this part.
     """
-    session_unauth = usdt_perpetual.HTTP(endpoint="https://api-testnet.bybit.com")  
+    session_unauth = usdt_perpetual.HTTP(endpoint="https://api.bybit.com")  
 
     startTime = str(int(startTime.timestamp()))  
 
@@ -37,7 +37,7 @@ def get_bybit_candles(symbol, interval, limit, startTime):
 
 df_list = []
 
-startTime = dt.datetime(2022, 8, 10)
+startTime = dt.datetime(2022, 8, 11)
 while True:
     print(startTime)
     new_df = get_bybit_candles(symbol='MATICUSDT', interval=5, limit=200, startTime=startTime)
@@ -51,7 +51,7 @@ while True:
  
 df = pd.concat(df_list)
 
-df.to_excel("MATICUSDT.xlsx") 
+df.to_excel("result/MATICUSDT.xlsx") 
 # df.to_csv('MATICUSDT.csv')
 
 
