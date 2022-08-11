@@ -1,4 +1,4 @@
-import time
+import time, random
 
 import datetime as dt
 from pybit import usdt_perpetual
@@ -38,11 +38,11 @@ def get_bybit_candles(symbol, interval, limit, startTime):
 
 df_list = []
 
-startTime = dt.datetime(2022, 8, 10)
+startTime = dt.datetime(2022, 1, 1)
 while True:
     print(startTime)
     new_df = get_bybit_candles(symbol='MATICUSDT', interval=5, limit=200, startTime=startTime)
-    time.sleep(2)
+    time.sleep(random.uniform(3, 5)) # I wasn't banned last time with this values
 
     if new_df is None:
         print('end')
@@ -58,8 +58,8 @@ while True:
  
 df = pd.concat(df_list)
 
-# df.to_excel("MATICUSDT.xlsx") 
-# df.to_csv('MATICUSDT.csv')
+df.to_excel("MATICUSDT.xlsx") 
+df.to_csv('MATICUSDT.csv')
 
 
 
