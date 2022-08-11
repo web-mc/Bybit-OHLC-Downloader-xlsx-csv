@@ -4,6 +4,7 @@ import datetime as dt
 from pybit import usdt_perpetual
 import pandas as pd
 
+# Based on article https://quantnomad.com/getting-historical-bars-from-bybit-api-with-python/
 
 def get_bybit_candles(symbol, interval, limit, startTime):
     """
