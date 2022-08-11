@@ -15,8 +15,8 @@ def get_bybit_candles(symbol, interval, limit, startTime):
     """
     session_unauth = usdt_perpetual.HTTP(endpoint="https://api.bybit.com")  
 
-    startTime = str(int(startTime.timestamp()))  
-
+    startTime = str(int(startTime.timestamp()))
+     
     data = session_unauth.query_kline(
         symbol=symbol,
         interval=interval,
@@ -37,7 +37,7 @@ def get_bybit_candles(symbol, interval, limit, startTime):
 
 df_list = []
 
-startTime = dt.datetime(2022, 8, 11)
+startTime = dt.datetime(2022, 8, 10)
 while True:
     print(startTime)
     new_df = get_bybit_candles(symbol='MATICUSDT', interval=5, limit=200, startTime=startTime)
@@ -47,12 +47,18 @@ while True:
         print('end')
         break
     df_list.append(new_df)
-    startTime = max(new_df.index) + dt.timedelta(minutes = 1000)
+
+    # Hours must be opposite to your UTC timezone.
+    # Examples:
+    # for UTC+3, "hours = -3"; 
+    # for UTC-5, "hours = 5"
+    startTime = max(new_df.index) + dt.timedelta(hours = -3, minutes = 5)
+
  
 df = pd.concat(df_list)
 
-df.to_excel("result/MATICUSDT.xlsx") 
-# df.to_csv('MATICUSDT.csv')
+# df.to_excel("result/MATICUSDT.xlsx") 
+# df.to_csv('result/MATICUSDT.csv')
 
 
 

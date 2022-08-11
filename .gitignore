@@ -1,4 +1,4 @@
 *.xlsx
 *.csv
 /tr_backtest
-result/
+result/*
