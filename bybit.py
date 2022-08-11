@@ -57,8 +57,8 @@ while True:
  
 df = pd.concat(df_list)
 
-# df.to_excel("result/MATICUSDT.xlsx") 
-# df.to_csv('result/MATICUSDT.csv')
+# df.to_excel("MATICUSDT.xlsx") 
+# df.to_csv('MATICUSDT.csv')
 
 
 
