@@ -39,6 +39,7 @@ def get_bybit_candles(symbol, interval, limit, startTime):
 
 df_list = []
 
+# Input data
 startTime = dt.datetime(2022, 1, 1)
 symbol='MATICUSDT'
 
@@ -61,8 +62,8 @@ while True:
  
 df = pd.concat(df_list)
 
-df.to_excel(f"{symbol}-start[{startTime.strftime('%d-%m-%Y')}].xlsx") 
-df.to_csv(f"{symbol}-start[{startTime.strftime('%d-%m-%Y')}].csv")
+df.to_excel(f"{symbol}.xlsx") 
+df.to_csv(f"{symbol}.csv")
 
 
 
