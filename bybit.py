@@ -1,8 +1,9 @@
 import time, random
-
 import datetime as dt
+
 from pybit import usdt_perpetual
 import pandas as pd
+
 
 # Based on article https://quantnomad.com/getting-historical-bars-from-bybit-api-with-python/
 
@@ -39,9 +40,11 @@ def get_bybit_candles(symbol, interval, limit, startTime):
 df_list = []
 
 startTime = dt.datetime(2022, 1, 1)
+symbol='MATICUSDT'
+
 while True:
     print(startTime)
-    new_df = get_bybit_candles(symbol='MATICUSDT', interval=5, limit=200, startTime=startTime)
+    new_df = get_bybit_candles(symbol=symbol, interval=5, limit=200, startTime=startTime)
     time.sleep(random.uniform(3, 5)) # I wasn't banned last time with this values
 
     if new_df is None:
@@ -58,8 +61,8 @@ while True:
  
 df = pd.concat(df_list)
 
-df.to_excel("MATICUSDT.xlsx") 
-df.to_csv('MATICUSDT.csv')
+df.to_excel(f"{symbol}-start[{startTime.strftime('%d-%m-%Y')}].xlsx") 
+df.to_csv(f"{symbol}-start[{startTime.strftime('%d-%m-%Y')}].csv")
 
 
 
